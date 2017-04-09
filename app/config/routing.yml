@@ -1,0 +1,58 @@
+kit_friend:
+    resource: "@KitFriendBundle/Resources/config/routing.yml"
+    prefix:   /friend
+
+kit_command:
+    resource: "@KitCommandBundle/Resources/config/routing.yml"
+    prefix:   /command
+
+kit_faq:
+    resource: "@KitFaqBundle/Resources/config/routing.yml"
+    prefix:   /admin/faq
+
+
+kit_bbs:
+    resource: "@KitBbsBundle/Resources/config/routing.yml"
+    prefix:   /bbs
+
+kit_video:
+    resource: "@KitVideoBundle/Resources/config/routing.yml"
+    prefix:   /video
+
+kit_web:
+    resource: "@KitWebBundle/Resources/config/routing.yml"
+    prefix:   /
+
+kit_backup:
+    resource: "@KitBackupBundle/Resources/config/routing.yml"
+    prefix:   /backup
+
+kit_user:
+    resource: "@KitUserBundle/Controller/"
+    type:     annotation
+    prefix:   /user
+
+kit_news:
+    resource: "@KitNewsBundle/Resources/config/routing.yml"
+    prefix:   /admin/news
+
+kit_admin:
+    resource: "@KitAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+kit_rbac:
+    resource: "@KitRbacBundle/Resources/config/routing.yml"
+    prefix:   /admin/rbac
+
+kit_base:
+    resource: "@KitBaseBundle/Controller/"
+    type:     annotation
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+gregwar_captcha_routing:
+    resource: "@GregwarCaptchaBundle/Resources/config/routing/routing.yml"
+    prefix: /
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"

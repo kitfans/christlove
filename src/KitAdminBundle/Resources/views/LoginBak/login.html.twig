@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'form_theme_captcha.html.twig' %}
+{% block body %}
+<div class="container">
+			<div class="line">
+				<div class="xs6 xm4 xs3-move xm4-move">
+					<br />
+					<br />
+					<div class="media media-y">
+						<a href="" target="_blank"><img src="{{ asset('static/images/logo.png') }}" class="radius" alt="后台管理系统" /></a>
+					</div>
+					<br />
+					<br />
+					{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+						<div class="panel">
+							<div class="panel-head"><strong>登录后台管理系统</strong></div>
+							<div class="panel-body" style="padding:30px;">
+							    {% if errors is defined and errors is not empty%}
+							    <div class="form-group">
+							         {% for error in errors %}
+							         <div class="alert alert-red">
+							             <span class="close rotate-hover"></span><span> {{ error }} </span>
+							         </div>
+							         {% endfor %}
+							    </div>
+							    {% endif %}
+								<div class="form-group">
+									<div class="field field-icon-right">
+									    {{ form_widget(form.username) }}
+										<span class="icon icon-user"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="field field-icon-right">
+									    {{ form_widget(form.password) }}
+										<span class="icon icon-key"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="field">
+										{{ form_widget(form.captcha) }}
+									</div>
+								</div>
+							</div>
+							<div class="panel-foot text-center">
+							     {{ form_widget(form.submit) }}
+							</div>
+						</div>
+					{{ form_end(form) }}
+				</div>
+			</div>
+		</div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+    $(function(){
+        $('.passcode').on('click', function(){
+            var src = $(this).attr('src');
+            $(this).attr('src', src + '&t=' + Date.parse(new Date()));
+        });
+     })
+    </script>
+{% endblock %}

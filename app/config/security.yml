@@ -1,0 +1,111 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/security.html
+# security:
+
+#     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+#     providers:
+#         in_memory:
+#             memory: ~
+
+#     firewalls:
+#         # disables authentication for assets and the profiler, adapt it according to your needs
+#         dev:
+#             pattern: ^/(_(profiler|wdt)|css|images|js)/
+#             security: false
+
+#         main:
+#             anonymous: ~
+#             # activate different ways to authenticate
+
+#             # http_basic: ~
+#             # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+#             # form_login: ~
+#             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+security:
+    encoders:
+        KitRbacBundle\Entity\User:
+            algorithm: bcrypt
+        KitWebBundle\Entity\WebUser: bcrypt
+#        FOS\UserBundle\Model\UserInterface: bcrypt
+#        KitAdminBundle\Security\User\WebserviceUser:
+#            algorithm: bcrypt
+#            cost: 12
+
+#    role_hierarchy:
+#        ROLE_ADMIN:       ROLE_USER
+#        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+        database_web_users:
+            entity: {class: KitWebBundle:WebUser, property: email }
+        #webservice:
+            #id: app.webservice_user_provider
+        database_admin_users:
+            entity:
+                class: KitRbacBundle:User
+                property: username
+#        fos_userbundle:
+#            id: fos_user.user_provider.username
+#        kit_api_provider:
+#            entity:
+#                class: KitAdminBundle:ApiUser
+        #users:
+            # entity: { class: AlarmComponent:User, property: username }
+        in_memory:
+            memory: ~
+    firewalls:
+        admin_firewalls:
+            pattern:   ^/admin
+            anonymous: ~
+            provider: database_admin_users
+            guard:
+                authenticators:
+                    - kit_admin.admin_form_login_authenticator
+            form_login:
+                login_path: kit_admin_login
+                check_path: kit_admin_login
+                default_target_path: /admin
+                username_parameter: _username
+                password_parameter: _password
+                failure_path: kit_admin_login
+            logout:
+                path: kit_admin_logout
+                target: kit_admin_login
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        #wsse_secured:
+            #pattern: ^/api/
+            #stateless: true
+            #wsse: true
+        main:
+            pattern: ^/
+            anonymous: ~
+            guard:
+                authenticators:
+                    - kit_web.form_login_authenticator
+            #form_login:
+            #    login_path: kit_web_login
+            #    check_path: kit_web_login_check
+            logout:
+                path: /logout
+                target: /
+            # form_login:
+            #     entity:
+            #         class: KitRbacBundle:User
+            # form_login:
+            #     provider: fos_userbundle
+            #     csrf_token_generator: security.csrf.token_manager
+                # if you are using Symfony < 2.8, use the following config instead:
+                # csrf_provider: form.csrf_provider
+            #access_denied_handler: app.security.access_denied_handler
+            #http_basic:
+                #provider: kit_api_provider
+            #logout: true
+            
+    access_control:
+        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, role: ROLE_ADMIN }
+        - { path: ^/u, role: ROLE_USER }

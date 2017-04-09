@@ -1,0 +1,15 @@
+kit_admin_homepage:
+    path:     /
+    defaults: { _controller: KitAdminBundle:Default:index }
+kit_admin_login:
+    path:     /login
+    defaults: { _controller: KitAdminBundle:Login:login }
+kit_admin_login_check:
+    path:     /login_check
+    defaults: { _controller: KitAdminBundle:Login:loginCheck }
+kit_admin_logout:
+    path:     /logout
+    defaults: { _controller: KitAdminBundle:Login:logout }
+kit_admin_upload:
+    path:     /upload
+    defaults: { _controller: KitAdminBundle:Upload:index }

@@ -1,0 +1,56 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+services:
+    kit.user_manager:
+        class: KitRbacBundle\Service\UserManager
+    twig.extension.text:
+           class: Twig_Extensions_Extension_Text
+           tags:
+               - { name: twig.extension }
+    kit_web.form_login_authenticator:
+        class: KitWebBundle\Security\FormLoginAuthenticator
+        arguments: ["@router", "@security.password_encoder"]
+    kit_admin.admin_form_login_authenticator:
+        class: KitAdminBundle\Security\AdminFormLoginAuthenticator
+        arguments: ["@router", "@security.password_encoder"]
+    app.base_voter:
+        class: KitRbacBundle\Security\BaseVoter
+        arguments: ['@security.access.decision_manager']
+        public: false
+        tags:
+            - { name: security.voter }
+    # custom access denied hander
+    app.security.access_denied_handler:
+        class: KitRbacBundle\Security\AccessDeniedHandler
+    kit.guzzle_http:
+        class: KitBaseBundle\Service\GuzzleHttp
+    kit.file_uploader:
+        class: KitBaseBundle\Service\FileUploader
+        arguments: ['%uploads_directory%']
+    app.webservice_user_provider:
+        class: KitAdminBundle\Security\User\WebserviceUserProvider
+    wsse.security.authentication.provider:
+        class: KitAdminBundle\Security\Authentication\Provider\WsseProvider
+        arguments:
+            - '' # User Provider
+            - '@cache.app'
+        public: false
+
+    wsse.security.authentication.listener:
+        class: KitAdminBundle\Security\Firewall\WsseListener
+        arguments: ['@security.token_storage', '@security.authentication.manager']
+        public: false
+    kit.menu_builder:
+        class: Kit\MenuBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory"]
+        tags:
+            - { name: knp_menu.menu_builder, method: createMainMenu, alias: main } # The alias is what is used to retrieve the menu
+            - { name: knp_menu.menu_builder, method: createSidebarIndexMenu, alias: sidebar_index }
+            - { name: knp_menu.menu_builder, method: createSidebarRbacMenu, alias: sidebar_rbac }
