@@ -1,0 +1,3 @@
+kit_calendar_homepage:
+    path:     /
+    defaults: { _controller: KitCalendarBundle:Default:index }

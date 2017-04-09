@@ -1,3 +1,7 @@
+kit_calendar:
+    resource: "@KitCalendarBundle/Resources/config/routing.yml"
+    prefix:   /admin/calendar
+
 kit_friend:
     resource: "@KitFriendBundle/Resources/config/routing.yml"
     prefix:   /friend

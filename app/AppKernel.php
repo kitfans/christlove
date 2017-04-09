@@ -35,6 +35,7 @@ class AppKernel extends Kernel
             new KitFaqBundle\KitFaqBundle(),
             new KitCommandBundle\KitCommandBundle(),
             new KitFriendBundle\KitFriendBundle(),
+            new KitCalendarBundle\KitCalendarBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
