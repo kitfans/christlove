@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Memberinfos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Memberid</th>
+                <th>School</th>
+                <th>Graduate</th>
+                <th>Education</th>
+                <th>Profession</th>
+                <th>Work</th>
+                <th>Company</th>
+                <th>Industry</th>
+                <th>Job</th>
+                <th>Marriage</th>
+                <th>Income</th>
+                <th>House</th>
+                <th>Native</th>
+                <th>Introduction</th>
+                <th>Belief</th>
+                <th>Baptize</th>
+                <th>Church</th>
+                <th>Praytime</th>
+                <th>Bibletime</th>
+                <th>Faith</th>
+                <th>Smoking</th>
+                <th>Nature</th>
+                <th>Drink</th>
+                <th>Parent</th>
+                <th>Cooking</th>
+                <th>Hobby</th>
+                <th>Special</th>
+                <th>Habit</th>
+                <th>Createat</th>
+                <th>Updateat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for memberInfo in memberInfos %}
+            <tr>
+                <td><a href="{{ path('memberinfo_show', { 'id': memberInfo.id }) }}">{{ memberInfo.id }}</a></td>
+                <td>{{ memberInfo.memberId }}</td>
+                <td>{{ memberInfo.school }}</td>
+                <td>{{ memberInfo.graduate }}</td>
+                <td>{{ memberInfo.education }}</td>
+                <td>{{ memberInfo.profession }}</td>
+                <td>{{ memberInfo.work }}</td>
+                <td>{{ memberInfo.company }}</td>
+                <td>{{ memberInfo.industry }}</td>
+                <td>{{ memberInfo.job }}</td>
+                <td>{{ memberInfo.marriage }}</td>
+                <td>{{ memberInfo.income }}</td>
+                <td>{{ memberInfo.house }}</td>
+                <td>{{ memberInfo.native }}</td>
+                <td>{{ memberInfo.introduction }}</td>
+                <td>{{ memberInfo.belief }}</td>
+                <td>{{ memberInfo.baptize }}</td>
+                <td>{{ memberInfo.church }}</td>
+                <td>{{ memberInfo.prayTime }}</td>
+                <td>{{ memberInfo.bibleTime }}</td>
+                <td>{{ memberInfo.faith }}</td>
+                <td>{{ memberInfo.smoking }}</td>
+                <td>{{ memberInfo.nature }}</td>
+                <td>{{ memberInfo.drink }}</td>
+                <td>{{ memberInfo.parent }}</td>
+                <td>{{ memberInfo.cooking }}</td>
+                <td>{{ memberInfo.hobby }}</td>
+                <td>{{ memberInfo.special }}</td>
+                <td>{{ memberInfo.habit }}</td>
+                <td>{% if memberInfo.createAt %}{{ memberInfo.createAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if memberInfo.updateAt %}{{ memberInfo.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('memberinfo_show', { 'id': memberInfo.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('memberinfo_edit', { 'id': memberInfo.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('memberinfo_new') }}">Create a new memberInfo</a>
+        </li>
+    </ul>
+{% endblock %}

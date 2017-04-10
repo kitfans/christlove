@@ -1,3 +1,12 @@
+kit_friend_member:
+    resource: "@KitFriendBundle/Resources/config/routing/member.yml"
+    prefix:   /member
+kit_friend_memberinfo:
+    resource: "@KitFriendBundle/Resources/config/routing/memberinfo.yml"
+    prefix:   /memberinfo
+kit_friend_memberpartner:
+    resource: "@KitFriendBundle/Resources/config/routing/memberpartner.yml"
+    prefix:   /memberpartner
 kit_friend_homepage:
     path:     /
     defaults: { _controller: KitFriendBundle:Default:index }

@@ -1,0 +1,24 @@
+memberinfo_index:
+    path:     /
+    defaults: { _controller: "KitFriendBundle:MemberInfo:index" }
+    methods:  GET
+
+memberinfo_show:
+    path:     /{id}/show
+    defaults: { _controller: "KitFriendBundle:MemberInfo:show" }
+    methods:  GET
+
+memberinfo_new:
+    path:     /new
+    defaults: { _controller: "KitFriendBundle:MemberInfo:new" }
+    methods:  [GET, POST]
+
+memberinfo_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "KitFriendBundle:MemberInfo:edit" }
+    methods:  [GET, POST]
+
+memberinfo_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "KitFriendBundle:MemberInfo:delete" }
+    methods:  DELETE

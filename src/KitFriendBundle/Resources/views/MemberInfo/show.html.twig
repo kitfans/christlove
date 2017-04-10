@@ -1,0 +1,148 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Memberinfo</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ memberInfo.id }}</td>
+            </tr>
+            <tr>
+                <th>Memberid</th>
+                <td>{{ memberInfo.memberId }}</td>
+            </tr>
+            <tr>
+                <th>School</th>
+                <td>{{ memberInfo.school }}</td>
+            </tr>
+            <tr>
+                <th>Graduate</th>
+                <td>{{ memberInfo.graduate }}</td>
+            </tr>
+            <tr>
+                <th>Education</th>
+                <td>{{ memberInfo.education }}</td>
+            </tr>
+            <tr>
+                <th>Profession</th>
+                <td>{{ memberInfo.profession }}</td>
+            </tr>
+            <tr>
+                <th>Work</th>
+                <td>{{ memberInfo.work }}</td>
+            </tr>
+            <tr>
+                <th>Company</th>
+                <td>{{ memberInfo.company }}</td>
+            </tr>
+            <tr>
+                <th>Industry</th>
+                <td>{{ memberInfo.industry }}</td>
+            </tr>
+            <tr>
+                <th>Job</th>
+                <td>{{ memberInfo.job }}</td>
+            </tr>
+            <tr>
+                <th>Marriage</th>
+                <td>{{ memberInfo.marriage }}</td>
+            </tr>
+            <tr>
+                <th>Income</th>
+                <td>{{ memberInfo.income }}</td>
+            </tr>
+            <tr>
+                <th>House</th>
+                <td>{{ memberInfo.house }}</td>
+            </tr>
+            <tr>
+                <th>Native</th>
+                <td>{{ memberInfo.native }}</td>
+            </tr>
+            <tr>
+                <th>Introduction</th>
+                <td>{{ memberInfo.introduction }}</td>
+            </tr>
+            <tr>
+                <th>Belief</th>
+                <td>{{ memberInfo.belief }}</td>
+            </tr>
+            <tr>
+                <th>Baptize</th>
+                <td>{{ memberInfo.baptize }}</td>
+            </tr>
+            <tr>
+                <th>Church</th>
+                <td>{{ memberInfo.church }}</td>
+            </tr>
+            <tr>
+                <th>Praytime</th>
+                <td>{{ memberInfo.prayTime }}</td>
+            </tr>
+            <tr>
+                <th>Bibletime</th>
+                <td>{{ memberInfo.bibleTime }}</td>
+            </tr>
+            <tr>
+                <th>Faith</th>
+                <td>{{ memberInfo.faith }}</td>
+            </tr>
+            <tr>
+                <th>Smoking</th>
+                <td>{{ memberInfo.smoking }}</td>
+            </tr>
+            <tr>
+                <th>Nature</th>
+                <td>{{ memberInfo.nature }}</td>
+            </tr>
+            <tr>
+                <th>Drink</th>
+                <td>{{ memberInfo.drink }}</td>
+            </tr>
+            <tr>
+                <th>Parent</th>
+                <td>{{ memberInfo.parent }}</td>
+            </tr>
+            <tr>
+                <th>Cooking</th>
+                <td>{{ memberInfo.cooking }}</td>
+            </tr>
+            <tr>
+                <th>Hobby</th>
+                <td>{{ memberInfo.hobby }}</td>
+            </tr>
+            <tr>
+                <th>Special</th>
+                <td>{{ memberInfo.special }}</td>
+            </tr>
+            <tr>
+                <th>Habit</th>
+                <td>{{ memberInfo.habit }}</td>
+            </tr>
+            <tr>
+                <th>Createat</th>
+                <td>{% if memberInfo.createAt %}{{ memberInfo.createAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updateat</th>
+                <td>{% if memberInfo.updateAt %}{{ memberInfo.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('memberinfo_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('memberinfo_edit', { 'id': memberInfo.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

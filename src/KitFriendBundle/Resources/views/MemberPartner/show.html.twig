@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Memberpartner</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ memberPartner.id }}</td>
+            </tr>
+            <tr>
+                <th>Memberid</th>
+                <td>{{ memberPartner.memberId }}</td>
+            </tr>
+            <tr>
+                <th>Belief</th>
+                <td>{{ memberPartner.belief }}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{ memberPartner.age }}</td>
+            </tr>
+            <tr>
+                <th>Mariage</th>
+                <td>{{ memberPartner.mariage }}</td>
+            </tr>
+            <tr>
+                <th>Income</th>
+                <td>{{ memberPartner.income }}</td>
+            </tr>
+            <tr>
+                <th>House</th>
+                <td>{{ memberPartner.house }}</td>
+            </tr>
+            <tr>
+                <th>Height</th>
+                <td>{{ memberPartner.height }}</td>
+            </tr>
+            <tr>
+                <th>Weight</th>
+                <td>{{ memberPartner.weight }}</td>
+            </tr>
+            <tr>
+                <th>Native</th>
+                <td>{{ memberPartner.native }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ memberPartner.city }}</td>
+            </tr>
+            <tr>
+                <th>Createat</th>
+                <td>{% if memberPartner.createAt %}{{ memberPartner.createAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updateat</th>
+                <td>{% if memberPartner.updateAt %}{{ memberPartner.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('memberpartner_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('memberpartner_edit', { 'id': memberPartner.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

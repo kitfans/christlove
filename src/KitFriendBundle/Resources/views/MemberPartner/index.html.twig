@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Memberpartners list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Memberid</th>
+                <th>Belief</th>
+                <th>Age</th>
+                <th>Mariage</th>
+                <th>Income</th>
+                <th>House</th>
+                <th>Height</th>
+                <th>Weight</th>
+                <th>Native</th>
+                <th>City</th>
+                <th>Createat</th>
+                <th>Updateat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for memberPartner in memberPartners %}
+            <tr>
+                <td><a href="{{ path('memberpartner_show', { 'id': memberPartner.id }) }}">{{ memberPartner.id }}</a></td>
+                <td>{{ memberPartner.memberId }}</td>
+                <td>{{ memberPartner.belief }}</td>
+                <td>{{ memberPartner.age }}</td>
+                <td>{{ memberPartner.mariage }}</td>
+                <td>{{ memberPartner.income }}</td>
+                <td>{{ memberPartner.house }}</td>
+                <td>{{ memberPartner.height }}</td>
+                <td>{{ memberPartner.weight }}</td>
+                <td>{{ memberPartner.native }}</td>
+                <td>{{ memberPartner.city }}</td>
+                <td>{% if memberPartner.createAt %}{{ memberPartner.createAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if memberPartner.updateAt %}{{ memberPartner.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('memberpartner_show', { 'id': memberPartner.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('memberpartner_edit', { 'id': memberPartner.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('memberpartner_new') }}">Create a new memberPartner</a>
+        </li>
+    </ul>
+{% endblock %}
