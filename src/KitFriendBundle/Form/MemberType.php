@@ -16,10 +16,10 @@ class MemberType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('nickname', null, [
-                'label' => '标题'
+                'label' => '圣名'
             ])
         ->add('username', null, [
-                'label' => '标题'
+                'label' => '姓名'
             ])
         ->add('gender', null, [
                 'label' => '标题'
